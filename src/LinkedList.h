@@ -7,11 +7,14 @@ typedef struct Element_t{
 }Element;
 
 typedef struct{
- 	Element *head;
+	Element *head;
 	Element *tail;
 	int length;
 }LinkedList;
 
 LinkedList *createLinkedList();
+void List_addFirst(LinkedList *list, Element *elem);
+Element *List_removeFirst(LinkedList *list);
+
 
 #endif // __LINKED_LIST_H__
