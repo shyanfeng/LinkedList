@@ -12,35 +12,37 @@ LinkedList *createLinkedList(){
 
 void List_addFirst(LinkedList *list, Element *elem){
 	int i = list->length;
-
-	*(list->tail)++;
-	list->head = &elem[0];
-	elem[i].next = NULL;
 	
-	for(i; i>=0; i--){
-		elem[i-1].next = &elem[i];
-		elem[i].data = elem[i-1].data;
+	elem[i-i].next = NULL;
+	
+	if(list->head == NULL && list-> tail == NULL){
+		list->head = &elem[0];
+		list->head = &elem[0];
+	}else{
+		list->tail = &elem[0];
+		list->head = &elem[(i)];
 	}
-
-	(list->length)++;
-	elem[0].data = 5; //user input.
 	
+	list->length++;
+
 }
 
 Element *List_removeFirst(LinkedList *list){
+
 	Element *address;
 	
 	address = list->head;
 	
 	if(list->head == list->tail){
-		list->head == NULL;
-		list->tail == NULL;
+		list->head = NULL;
+		list->tail = NULL;
 	}
 	else{
-		*(list->head)++;
+		 list->head = list->head->next;
+		 list->tail->next = NULL;
 	}
 	
-	list->length--;
+	list->length = list->length - 1 ;
 	
 	return address;
 }
