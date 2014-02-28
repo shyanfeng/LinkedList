@@ -30,7 +30,6 @@ void List_addFirst(LinkedList *list, Element *elem){
 Element *List_removeFirst(LinkedList *list){
 
 	Element *address;
-	
 	address = list->head;
 	
 	if(list->head == list->tail){

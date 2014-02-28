@@ -86,7 +86,7 @@ void test_List_removeFirst_should_remove_first_element_and_head_and_tail_to_null
 void test_List_removeFirst_should_remove_first_element_and_head_to_second_element(){
 	LinkedList *list;
 	list = createLinkedList();
-	
+
 	Element arrayElem[] = {{.next = &arrayElem[1], .data = 1},
 							{.next = NULL, .data = 2}};
 	
@@ -94,18 +94,39 @@ void test_List_removeFirst_should_remove_first_element_and_head_to_second_elemen
 	list->head = &arrayElem[0];
 	list->tail = &arrayElem[1];
 	
-	List_removeFirst(list);
-	printf("arrayElem[0].address: %p\n", &arrayElem[0]);
-	printf("arrayElem[1].address: %p", &arrayElem[1]);
+	//printf("arrayElem[0].address: %p\n", &arrayElem[0]);
+	//printf("arrayElem[1].address: %p", &arrayElem[1]);
 
-	TEST_ASSERT_EQUAL_PTR(&arrayElem[1], List_removeFirst(list));
-	TEST_ASSERT_EQUAL_PTR(list->head, &arrayElem[1]);	//list->head can not point to &arrayElem[1] after remove
+	TEST_ASSERT_EQUAL_PTR(&arrayElem[0], List_removeFirst(list));
+	TEST_ASSERT_EQUAL_PTR(list->head, &arrayElem[1]);
 	TEST_ASSERT_EQUAL_PTR(list->tail, &arrayElem[1]);
 	TEST_ASSERT_NULL(arrayElem[1].next);
 	TEST_ASSERT_EQUAL(1, list->length);
 	
 }
 
+void test_List_removeFirst_should_remove_first_element_and_head_to_second_element_and_tail_to_third_element(){
+	LinkedList *list;
+	list = createLinkedList();
+
+	Element arrayElem[] = {{.next = &arrayElem[1], .data = 1},
+							{.next = &arrayElem[2], .data = 2},
+							{.next = NULL, .data = 3}};
+	
+	list->length = 3;
+	list->head = &arrayElem[0];
+	list->tail = &arrayElem[2];
+	
+	//printf("arrayElem[0].address: %p\n", &arrayElem[0]);
+	//printf("arrayElem[1].address: %p", &arrayElem[1]);
+
+	TEST_ASSERT_EQUAL_PTR(&arrayElem[0], List_removeFirst(list));
+	TEST_ASSERT_EQUAL_PTR(list->head, &arrayElem[1]);
+	TEST_ASSERT_EQUAL_PTR(list->tail, &arrayElem[2]);
+	TEST_ASSERT_NULL(arrayElem[2].next);
+	TEST_ASSERT_EQUAL(2, list->length);
+	
+}
 
 
 
