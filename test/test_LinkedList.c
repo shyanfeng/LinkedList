@@ -64,6 +64,16 @@ void test_List_addFirst_should_add_element_to_first_slot_testing_with_3_elements
 	TEST_ASSERT_EQUAL(3, list->length);
 }
 
+void test_List_removeFirst_should_remove_head_and_tail_and_return_null(){
+	LinkedList *list;
+	list = createLinkedList();
+	
+	list->head = NULL;
+	list->tail = NULL;
+	
+	TEST_ASSERT_NULL(List_removeFirst(list));
+}
+
 void test_List_removeFirst_should_remove_first_element_and_head_and_tail_to_null(){
 	LinkedList *list;
 	list = createLinkedList();

@@ -32,6 +32,10 @@ Element *List_removeFirst(LinkedList *list){
 	Element *address;
 	address = list->head;
 	
+	if(list->head == NULL && list-> tail == NULL){
+		return NULL;
+	}
+	
 	if(list->head == list->tail){
 		list->head = NULL;
 		list->tail = NULL;
