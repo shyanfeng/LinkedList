@@ -16,25 +16,26 @@ void test_createLinkedList_should_return_LinkedList_object(){
 }
 
 void test_List_addFirst_should_add_element_to_first_slot_testing_with_2_elements(){
-	LinkedList *list;
-	list = createLinkedList();
+	LinkedList *list = createLinkedList();
 	
-	Element arrayElem[] = {{.next = NULL, .data = 1}, 
-							{.next = &arrayElem[0], .data = 2}};
+	Element elem = {.next = NULL, .data = 1};
+	Element	elem2 = {.next = NULL, .data = 2};
+	
+	//printf("%p\n",&elem);
+	//printf("%p\n",&elem2);
+	
 	list->length = 1;
-	list->head = &arrayElem[0];
-	list->tail = &arrayElem[0];
-	//printf("arrayElem[0].data: %d\n", arrayElem[0].data);
-	//printf("arrayElem[1].data: %d\n", arrayElem[1].data);
+	list->head = &elem;
+	list->tail = &elem;
 
-	List_addFirst(list, arrayElem);
+	List_addFirst(list, &elem2);
 	
-	TEST_ASSERT_EQUAL(1, arrayElem[0].data);
-	TEST_ASSERT_EQUAL(2, arrayElem[1].data);
-	TEST_ASSERT_NULL(arrayElem[0].next);
-	TEST_ASSERT_EQUAL_PTR(list->head, &arrayElem[1]);
-	TEST_ASSERT_EQUAL_PTR(list->tail, &arrayElem[0]);
-	TEST_ASSERT_EQUAL_PTR(arrayElem[1].next, &arrayElem[0]);
+	TEST_ASSERT_EQUAL(1, elem.data);
+	TEST_ASSERT_EQUAL(2, elem2.data);
+	TEST_ASSERT_NULL(elem.next);
+	TEST_ASSERT_EQUAL_PTR(list->head, &elem2);
+	TEST_ASSERT_EQUAL_PTR(list->tail, &elem);
+	TEST_ASSERT_EQUAL_PTR(elem2.next, &elem);
 	TEST_ASSERT_EQUAL(2, list->length);
 }
 
@@ -42,25 +43,27 @@ void test_List_addFirst_should_add_element_to_first_slot_testing_with_3_elements
 	LinkedList *list;
 	list = createLinkedList();
 	
-	Element arrayElem[] = {{.next = NULL, .data = 1}, 
-							{.next = &arrayElem[0], .data = 2},
-							{.next = &arrayElem[1], .data = 3}};
-	list->length = 2;
-	list->head = &arrayElem[1];
-	list->tail = &arrayElem[0];
-	//printf("arrayElem[0].data: %d\n", arrayElem[0].data);
-	//printf("arrayElem[1].data: %d\n", arrayElem[1].data);
-	//printf("arrayElem[1].data: %d\n", arrayElem[2].data);
-
-	List_addFirst(list, arrayElem);
+	Element elem = {.next = NULL, .data = 1}; 
+	Element elem2 = {.next = &elem, .data = 2};
+	Element elem3 = {.next = NULL, .data = 3};
 	
-	TEST_ASSERT_EQUAL(1, arrayElem[0].data);
-	TEST_ASSERT_EQUAL(2, arrayElem[1].data);
-	TEST_ASSERT_EQUAL(3, arrayElem[2].data);
-	TEST_ASSERT_NULL(arrayElem[0].next);
-	TEST_ASSERT_EQUAL_PTR(list->head, &arrayElem[2]);
-	TEST_ASSERT_EQUAL_PTR(list->tail, &arrayElem[0]);
-	TEST_ASSERT_EQUAL_PTR(arrayElem[1].next, &arrayElem[0]);
+	//printf("%p\n",&elem);
+	//printf("%p\n",&elem2);
+	//printf("%p\n",&elem3);
+	
+	list->length = 2;
+	list->head = &elem2;
+	list->tail = &elem;
+
+	List_addFirst(list, &elem3);
+	
+	TEST_ASSERT_EQUAL(1, elem.data);
+	TEST_ASSERT_EQUAL(2, elem2.data);
+	TEST_ASSERT_EQUAL(3, elem3.data);
+	TEST_ASSERT_NULL(elem.next);
+	TEST_ASSERT_EQUAL_PTR(list->head, &elem3);
+	TEST_ASSERT_EQUAL_PTR(list->tail, &elem);
+	TEST_ASSERT_EQUAL_PTR(elem3.next, &elem2);
 	TEST_ASSERT_EQUAL(3, list->length);
 }
 

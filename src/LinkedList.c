@@ -11,20 +11,15 @@ LinkedList *createLinkedList(){
 }
 
 void List_addFirst(LinkedList *list, Element *elem){
-	int i = list->length;
-	
-	elem[i-i].next = NULL;
 	
 	if(list->head == NULL && list-> tail == NULL){
-		list->head = &elem[0];
-		list->head = &elem[0];
+		list->head = elem;
+		list->tail = elem;
 	}else{
-		list->tail = &elem[0];
-		list->head = &elem[(i)];
+		elem->next = list->head;
+		list->head = elem;
 	}
-	
 	list->length++;
-
 }
 
 Element *List_removeFirst(LinkedList *list){
